@@ -12,7 +12,7 @@ function OrderApplyComponent() {
     }
 
     const handleChangeProductName = (e) => {
-        setProudctCode(e.target.value);
+        setProductName(e.target.value);
     }
 
     const handleChangeEventName = (e) => {
