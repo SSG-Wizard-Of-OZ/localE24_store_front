@@ -28,8 +28,8 @@ function EventReadComponent() {
                     </div>
                 </div>
                 <div>
-                <span className="text-lg font-medium text-gray-700">공간대여 가능 여부</span>
-                    <p className="max-w-fit mt-1 px-3 py-2 border rounded-md">가능</p>
+                <span className="text-lg font-medium text-gray-700">공간대여 필요 여부</span>
+                    <p className="max-w-fit mt-1 px-3 py-2 border rounded-md">필요</p>
                 </div>
                 <div>
                     <span className="text-lg font-medium text-gray-700">상품 리스트</span>

@@ -29,11 +29,12 @@ function OrderListComponent() {
             <div className="mx-auto w-full px-4 sm:px-8 py-6 bg-white shadow-md rounded-lg">
                 <div className="flex flex-col gap-5">
 
-                    {/* 상태 체크박스 */}
+                    {/* 상태 셀렉트박스 */}
                     <div className="flex items-center gap-3">
                         <span className="text-gray-700 font-medium">상태</span>
                         <select
                             className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">전체</option>
                             {['대기중', '수주완료', '발주완료'].map((status, index) => (
                                 <option key={index} value={index}>
                                     {status}

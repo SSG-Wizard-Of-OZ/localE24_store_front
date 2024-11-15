@@ -5,7 +5,7 @@ function StoreApplyCheckComponent() {
     }
 
     return (
-        <div className="pt-20 pb-10 max-w-screen-xl mx-auto">
+        <div className="pt-20 pb-10 w-full mx-auto">
             <div className="flex flex-col gap-5">
                 <div className="flex justify-center items-center border rounded-2xl p-10 bg-white shadow-md space-y-6 text-2xl">
                     이벤트 지점을 등록하신 (<span className="font-bold">&nbsp;해운대점&nbsp;</span>)은 현재 승인 대기중 입니다.

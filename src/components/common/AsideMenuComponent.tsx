@@ -35,6 +35,14 @@ function AsideMenuComponent() {
         basicPath:"/order",
         iconName: "product.png"
     }
+    const m3:Depth1MenuProps = {
+        mainName:"재고 관리",
+        subMenus:[
+            {name:"재고 목록",toPath:"/list"}
+        ],
+        basicPath:"/stock",
+        iconName: "stats.png"
+    }
 
     return (
         <aside className="z-20 hidden w-64 overflow-y-auto bg-side-navy md:block flex-shrink-0">
@@ -49,6 +57,7 @@ function AsideMenuComponent() {
                 <ul className="mt-6 space-y-2 text-txt-grey">
                     <Depth1Menu {...m1}></Depth1Menu>
                     <Depth1Menu {...m2} ></Depth1Menu>
+                    <Depth1Menu {...m3} ></Depth1Menu>
                 </ul>
             </div>
         </aside>

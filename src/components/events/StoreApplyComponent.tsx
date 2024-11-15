@@ -15,7 +15,7 @@ function StoreApplyComponent() {
     }
 
     return (
-        <div className="pt-20 pb-10 max-w-screen-xl mx-auto">
+        <div className="pt-5 pb-5 w-full mx-auto">
 
             <div className="border rounded-2xl p-10 bg-white shadow-md space-y-6">
                 <h1>이벤트 지점 등록 신청</h1>
@@ -37,14 +37,14 @@ function StoreApplyComponent() {
 
                 <div>
                     <label className="text-sm font-medium text-gray-700">공간대여 가능 여부</label>
-                    <ul className="grid w-full gap-6 md:grid-cols-2">
+                    <ul className="flex gap-3">
                         <li>
                             <input type="radio" id="radio1" name="radioTest" value="hosting-small"
                                    className="hidden peer" checked={spaceRadio} onChange={handleChangeRadio}/>
                             <label htmlFor="radio1"
-                                   className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                   className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <div className="block">
-                                    <div className="w-full text-lg font-semibold">가능</div>
+                                    <div className="font-semibold">가능</div>
                                 </div>
                             </label>
                         </li>
@@ -52,9 +52,9 @@ function StoreApplyComponent() {
                             <input type="radio" id="radio2" name="radioTest" value="hosting-big"
                                    className="hidden peer" checked={!spaceRadio} onChange={handleChangeRadio}/>
                             <label htmlFor="radio2"
-                                   className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                   className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <div className="block">
-                                    <div className="w-full text-lg font-semibold">불가능</div>
+                                    <div className="font-semibold">불가능</div>
                                 </div>
                             </label>
                         </li>
