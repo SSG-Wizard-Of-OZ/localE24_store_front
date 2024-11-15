@@ -5,7 +5,7 @@ import {useNavigate} from "react-router";
 function StockListComponent() {
 
     const navigate = useNavigate();
-    const {keywonrd, setKeyword} = useState("")
+    const {keyword, setKeyword} = useState("")
     const {searchType, setSearchType} = useState("a")
 
     const handleChangeKeyword = (e) => {
@@ -36,7 +36,7 @@ function StockListComponent() {
                             <option value="c">상품명</option>
                         </select>
                         {/* 키워드 입력 */}
-                        <input type="text" value={keywonrd} onChange={handleChangeKeyword} placeholder={"키워드를 입력해 주세요"}
+                        <input type="text" value={keyword} onChange={handleChangeKeyword} placeholder={"키워드를 입력해 주세요"}
                                className="border border-black px-2"/>
                         {/* 검색 버튼 */}
                         <button
@@ -85,7 +85,7 @@ function StockListComponent() {
                         {/* table body */}
                         <div className="overflow-y-auto">
                             <div
-                                onClick={moveToRead}
+                                // onClick={moveToRead}
                                 className="grid grid-cols-12 border border-b-0 border-gray-400 text-center text-xs text-gray-600 uppercase tracking-wider">
                                 <div
                                     className="col-span-2 h-full p-2 flex justify-center items-center border-r border-gray-400">
@@ -150,7 +150,7 @@ function StockListComponent() {
                         {/* table body */}
                         <div className="overflow-y-auto">
                             <div
-                                onClick={moveToRead}
+                                // onClick={moveToRead}
                                 className="grid grid-cols-12 border border-b-0 border-gray-400 text-center text-xs text-gray-600 uppercase tracking-wider">
                                 <div
                                     className="col-span-2 h-full p-2 flex justify-center items-center border-r border-gray-400">

@@ -4,11 +4,11 @@ import {useState} from "react";
 function OrderApplyComponent() {
 
     const [productName, setProductName] = useState('상품명1');
-    const [proudctCode, setProudctCode] = useState('1234567890');
+    const [productCode, setProductCode] = useState('1234567890');
     const [eventName, setEventName] = useState('이벤트명1');
 
     const handleChangeProductCode = (e) => {
-        setProudctCode(e.target.value);
+        setProductCode(e.target.value);
     }
 
     const handleChangeProductName = (e) => {
@@ -44,7 +44,7 @@ function OrderApplyComponent() {
                                     <input
                                         type="text"
                                         id="makerName"
-                                        value={proudctCode}
+                                        value={productCode}
                                         onChange={handleChangeProductCode}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                     />
@@ -63,7 +63,7 @@ function OrderApplyComponent() {
                                     />
                                 </div>
                                 <div className="flex items-center gap-3 w-1/2">
-                                    <label className="text-gray-700 font-medium">공간대여 가능 여부</label>
+                                    <label className="text-gray-700 font-medium">공간대여</label>
                                     <ul className="flex gap-2">
                                         <li>
                                             <input type="radio" id="space1" name="spaceAvailability"

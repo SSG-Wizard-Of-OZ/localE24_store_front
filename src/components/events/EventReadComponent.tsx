@@ -31,40 +31,58 @@ function EventReadComponent() {
                 <span className="text-lg font-medium text-gray-700">공간대여 필요 여부</span>
                     <p className="max-w-fit mt-1 px-3 py-2 border rounded-md">필요</p>
                 </div>
-                <div>
+                <div className="flex flex-col gap-4">
                     <span className="text-lg font-medium text-gray-700">상품 리스트</span>
-                    <ul className="flex flex-col gap-3">
-                        <li className="flex gap-4">
-                            <div className="max-w-xs">
-                                <img className="rounded-md" src="/src/assets/img/food/M28.jpeg" alt="img1"/>
+                    <div>
+                        <div className="flex gap-3">
+                            <div className="flex gap-2">
+                                <span>상품명:</span>
+                                <span>상품1</span>
                             </div>
-                            <div>
-                                <div>
-                                    <span>상품명 : </span>
-                                    <span>상품1</span>
-                                </div>
-                                <div>
-                                    <span>가격 : </span>
-                                    <span>10000</span>
-                                </div>
+                            <div className="flex gap-2">
+                                <span>가격:</span>
+                                <span>10000</span>
                             </div>
-                        </li>
-                        <li className="flex gap-4">
-                            <div className="max-w-xs">
-                                <img className="rounded-md" src="/src/assets/img/food/M28.jpeg" alt="img1"/>
-                            </div>
-                            <div>
-                                <div>
-                                    <span>상품명 : </span>
-                                    <span>상품2</span>
+                        </div>
+                        <ul className="flex gap-3">
+                            <li className="flex gap-4">
+                                <div className="w-52">
+                                    <img className="rounded-md" src="/src/assets/img/food/M28.jpeg" alt="img1"/>
                                 </div>
-                                <div>
-                                    <span>가격 : </span>
-                                    <span>20000</span>
+                                <div className="w-52">
+                                    <img className="rounded-md" src="/src/assets/img/food/M28.jpeg" alt="img2"/>
                                 </div>
+                                <div className="w-52">
+                                    <img className="rounded-md" src="/src/assets/img/food/M28.jpeg" alt="img3"/>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div className="flex gap-3">
+                            <div className="flex gap-2">
+                                <span>상품명:</span>
+                                <span>상품2</span>
                             </div>
-                        </li>
-                    </ul>
+                            <div className="flex gap-2">
+                                <span>가격:</span>
+                                <span>20000</span>
+                            </div>
+                        </div>
+                        <ul className="flex gap-3">
+                            <li className="flex gap-4">
+                                <div className="w-52">
+                                    <img className="rounded-md" src="/src/assets/img/food/M4.jpeg" alt="img1"/>
+                                </div>
+                                <div className="w-52">
+                                    <img className="rounded-md" src="/src/assets/img/food/M4.jpeg" alt="img2"/>
+                                </div>
+                                <div className="w-52">
+                                    <img className="rounded-md" src="/src/assets/img/food/M4.jpeg" alt="img3"/>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div className="flex gap-4 justify-center">
