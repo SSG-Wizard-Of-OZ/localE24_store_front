@@ -23,7 +23,7 @@ const storeEventRouter={
             element: <Suspense fallback={Loading}><EventListPage/></Suspense>
         },
         {
-            path: "read",
+            path: "read/:eno",
             element: <Suspense fallback={Loading}><EventReadPage/></Suspense>
         },
         {

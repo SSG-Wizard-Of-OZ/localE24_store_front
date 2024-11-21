@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {SetStateAction, useState} from "react";
 
 
 function StoreApplyComponent() {
@@ -6,7 +6,7 @@ function StoreApplyComponent() {
     const [contactNum, setContactNum] = useState('010-1234-5667');
     const [spaceRadio, setSpaceRadio] = useState<boolean>(true);
 
-    const handleChange = (e) => {
+    const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
         setContactNum(e.target.value);
     };
 
