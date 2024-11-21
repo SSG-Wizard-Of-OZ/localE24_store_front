@@ -5,7 +5,7 @@ function StockListComponent() {
         <div className="pt-5 pb-5 w-full mx-auto">
             <div className="flex flex-col h-screen gap-2 border px-4 py-2 rounded-2xl bg-white shadow-md">
                 {/* 검색 박스 */}
-                <div className="mx-auto w-full px-4 py-6 bg-white border">m 
+                <div className="mx-auto w-full px-4 py-6 bg-white border">
                     <div className="flex gap-5">
                         {/* 검색조건 선택 */}
                         <select
