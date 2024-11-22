@@ -7,7 +7,9 @@ const Loading = <LoadingPage></LoadingPage>
 
 const StockIndex = lazy(() => import("../pages/stocks/StockIndex.tsx"))
 const StockListPage = lazy(() => import("../pages/stocks/StockListPage.tsx"))
-const StockReadPage = lazy(() => import("../pages/stocks/StockReadPage.tsx"))
+const RefundIndex = lazy(() => import("../pages/stocks/refund/RefundIndex"))
+const RefundListPage = lazy(() => import("../pages/stocks/refund/RefundListPage"))
+const RefundReadPage = lazy(() => import("../pages/stocks/refund/RefundReadPage"))
 
 const storeStockRouter = {
     path: '/stock',
@@ -22,8 +24,22 @@ const storeStockRouter = {
             element: <Suspense fallback={Loading}><StockListPage/></Suspense>
         },
         {
-            path:"read",
-            element: <Suspense fallback={Loading}><StockReadPage/></Suspense>
+            path: "refund",
+            element: <Suspense fallback={Loading}><RefundIndex/></Suspense>,
+            children: [
+                {
+                    path:"",
+                    element: <Navigate to={"list"} replace={true}></Navigate>
+                },
+                {
+                    path:"list",
+                    element: <Suspense fallback={Loading}><RefundListPage/></Suspense>
+                },
+                {
+                    path:"read",
+                    element: <Suspense fallback={Loading}><RefundReadPage/></Suspense>
+                },
+            ]
         }
     ]
 }

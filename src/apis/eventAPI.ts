@@ -7,7 +7,7 @@ export const getEventList = async (page?:number, size?:number) => {
     const pageValue:number = page || 1
     const sizeValue:number = size || 10
 
-    const res = await axios.get(`${host}/assigned?sno=${3}&page=${pageValue}&size=${sizeValue}`);
+    const res = await axios.get(`${host}/assigned?sno=${5}&page=${pageValue}&size=${sizeValue}`);
 
 
     return res.data

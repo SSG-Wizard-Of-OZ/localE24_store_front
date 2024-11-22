@@ -12,5 +12,4 @@ export interface IPageResponse<E> {
     nextPage: number;
     current: number;
     totalPage: number;
-
 }
