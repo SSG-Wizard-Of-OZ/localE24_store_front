@@ -6,3 +6,8 @@ export interface IProduct {
     price: number,
     fileNames: string[]
 }
+
+export interface IAllProduct extends IProduct {
+    ename:string,
+    quantity:number
+}

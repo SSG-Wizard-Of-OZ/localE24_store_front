@@ -38,7 +38,8 @@ function AsideMenuComponent() {
     const m3:Depth1MenuProps = {
         mainName:"재고 관리",
         subMenus:[
-            {name:"재고 목록",toPath:"/list"}
+            {name:"재고 목록",toPath:"/list"},
+            {name:"반품 신청",toPath:"/refund"}
         ],
         basicPath:"/stock",
         iconName: "stats.png"
