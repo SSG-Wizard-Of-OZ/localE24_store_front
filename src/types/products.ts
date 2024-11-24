@@ -11,3 +11,8 @@ export interface IAllProduct extends IProduct {
     ename:string,
     quantity:number
 }
+
+export interface IProductSearch  {
+    pkeyword: string | null;
+    ekeyword: string | null;
+}

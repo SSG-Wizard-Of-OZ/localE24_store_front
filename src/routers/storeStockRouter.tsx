@@ -36,7 +36,7 @@ const storeStockRouter = {
                     element: <Suspense fallback={Loading}><RefundListPage/></Suspense>
                 },
                 {
-                    path:"read",
+                    path:"read/:pno",
                     element: <Suspense fallback={Loading}><RefundReadPage/></Suspense>
                 },
             ]

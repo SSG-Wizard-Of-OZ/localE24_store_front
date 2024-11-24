@@ -1,8 +1,9 @@
+import RefundReadComponent from "../../../components/stocks/refund/RefundReadComponent.tsx";
 
 
 function RefundReadPage() {
     return (
-        <div></div>
+        <RefundReadComponent/>
     );
 }
 

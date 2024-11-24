@@ -1,13 +1,14 @@
 
-import {useSearchParams} from "react-router-dom";
+import {createSearchParams, useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {IPageResponse} from "../../../types/pageResponse.ts";
-import {IAllProduct} from "../../../types/products.ts";
+import {IAllProduct, IProductSearch} from "../../../types/products.ts";
 import LoadingComponent from "../../common/LoadingComponent.tsx";
 import PageComponent from "../../common/PageComponent.tsx";
 import {getProductsByStore} from "../../../apis/productAPI.ts";
+import {useNavigate} from "react-router";
 
-const initialState:IPageResponse<IAllProduct> = {
+const initialPageResponse:IPageResponse<IAllProduct> = {
     dtoList: [],
     pageNumList: [],
     pageRequestDTO: { page: 1, size: 10 },
@@ -20,26 +21,65 @@ const initialState:IPageResponse<IAllProduct> = {
     totalPage: 0
 }
 
+const initialSearchParams: IProductSearch = {
+    pkeyword: null,
+    ekeyword: null
+};
+
+
 function RefundListComponent() {
 
     const [query] = useSearchParams();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState<boolean>(false);
+    const [pageResponse, setPageResponse] = useState<IPageResponse<IAllProduct>>(initialPageResponse);
+
+    // 통합 상태 관리
+    const [searchParams, setSearchParams] = useState<IProductSearch>(initialSearchParams);
+    // 상태 업데이트 함수
+    const updateSearchParam = <K extends keyof IProductSearch>(key: K, value: IProductSearch[K]) => {
+        setSearchParams((prev) => ({
+            ...prev,
+            [key]: value, // 특정 키만 업데이트
+        }));
+    };
 
     const page: number = Number(query.get("page")) || 1;
     const size: number = Number(query.get("size")) || 10;
+    const queryStr = createSearchParams({
+        page: String(page),
+        size: String(size),
+        pkeword: String(searchParams.pkeyword),
+        ekeword: String(searchParams.ekeyword)
+    });
 
-    const [loading, setLoading] = useState<boolean>(false);
-
-    const [pageResponse, setPageResponse] = useState<IPageResponse<IAllProduct>>(initialState);
-
-    useEffect(() => {
+    const handleClickSearch = () => {
         setLoading(true);
-        getProductsByStore(page, size).then((data) => {
+
+        getProductsByStore(1, size, searchParams).then((data) => {
             setPageResponse(data);
             setTimeout(() => {
                 setLoading(false);
             }, 600);
         });
-    }, [page, size]);
+    }
+
+    const moveToRead = (pno:number) => {
+        navigate({
+            pathname: `/stock/refund/read/${pno}`,
+            search:`${queryStr}`
+        })
+    }
+
+    useEffect(() => {
+        setLoading(true)
+        getProductsByStore(page, size, searchParams).then((data) => {
+            setPageResponse(data);
+            setTimeout(() => {
+                setLoading(false);
+            }, 600)
+        })
+    }, [page, size])
 
 
     const ProductDivs = pageResponse.dtoList.map((data) => {
@@ -69,6 +109,7 @@ function RefundListComponent() {
                     className="col-span-1 h-full p-1 flex justify-center items-center">
                     {/* 버튼 */}
                     <button
+                        onClick={() => moveToRead(pno)}
                         className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                         변경 신청
                     </button>
@@ -87,24 +128,27 @@ function RefundListComponent() {
                     <div className="flex flex-col gap-5">
                         {/* 상품 키워드 입력 */}
                         <div className="flex items-center gap-4">
-                            <label htmlFor="eventName" className="text-gray-700 font-medium">상품 키워드</label>
+                            <label className="text-gray-700 font-medium">상품 키워드</label>
                             <input
                                 type="text"
-                                id="eventName"
+                                value={searchParams.pkeyword ?? ""}
+                                onChange={(e) => updateSearchParam("pkeyword", e.target.value)}
                                 className="mt-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             />
                         </div>
                         {/* 이벤트 키워드 입력 */}
                         <div className="flex items-center gap-4">
-                            <label htmlFor="eventName" className="text-gray-700 font-medium">이벤트 키워드</label>
+                            <label className="text-gray-700 font-medium">이벤트 키워드</label>
                             <input
                                 type="text"
-                                id="eventName"
+                                value={searchParams.ekeyword ?? ""}
+                                onChange={(e) => updateSearchParam("ekeyword", e.target.value)}
                                 className="mt-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             />
                         </div>
                         {/* 검색 버튼 */}
                         <button
+                            onClick={handleClickSearch}
                             className="self-end px-6 py-2 bg-gray-600 text-sm text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
                         >
                             검색

@@ -1,10 +1,11 @@
-import {getEventOne} from "../../apis/eventAPI.ts";
-import {useParams} from "react-router";
+import {getEventOne, putEventStatus} from "../../apis/eventAPI.ts";
+import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
-import {getEventProducts} from "../../apis/productAPI.ts";
+import {getProductsByEvent} from "../../apis/productAPI.ts";
 import {IEvent} from "../../types/events.ts";
 import {IProduct} from "../../types/products.ts";
 import LoadingComponent from "../common/LoadingComponent.tsx";
+import {useSearchParams} from "react-router-dom";
 
 const initialEvent:IEvent = {
     eno: 0,
@@ -28,6 +29,10 @@ function EventReadComponent() {
     const {eno} = useParams();
     const [loading, setLoading] = useState<boolean>(false);
 
+    const [query] = useSearchParams();
+    const navigate = useNavigate();
+    const queryStr = new URLSearchParams(query).toString();
+
     const [event, setEvent] = useState<IEvent>(initialEvent)
     const [products, setProducts] = useState<IProduct[]>(initialProducts)
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -39,7 +44,7 @@ function EventReadComponent() {
         setLoading(true);
         getEventOne(Number(eno)).then((data) => {
             setEvent(data);
-            getEventProducts(Number(eno)).then( data => {
+            getProductsByEvent(Number(eno)).then(data => {
                 setProducts(data)
             });
             setTimeout(() => {
@@ -47,6 +52,33 @@ function EventReadComponent() {
             }, 600);
         });
     },[eno])
+
+    const moveToBack = () => {
+        history.go(-1)
+    }
+
+    const handleApprove = () => {
+        setActionType("approve");
+        setModalOpen(true);
+    };
+
+    const handleReject = () => {
+        setActionType("reject");
+        setModalOpen(true);
+    };
+
+    const handleSubmit = () => {
+        const status = actionType === "approve" ? 1 : 2;
+        putEventStatus(Number(eno),status).then(data => {
+            console.log(data)
+            navigate({
+                pathname: `/event/list`,
+                search: `?${queryStr}`
+            })
+        })
+        setModalOpen(false);
+
+    };
 
     const productDivs = products.map(product => {
         const {pno, pname, price, pdesc, fileNames} = product;
@@ -86,25 +118,6 @@ function EventReadComponent() {
             </div>
         )
     });
-
-
-    const moveToBack = () => {
-        history.go(-1)
-    }
-
-    const handleApprove = () => {
-        setActionType("approve");
-        setModalOpen(true);
-    };
-
-    const handleReject = () => {
-        setActionType("reject");
-        setModalOpen(true);
-    };
-
-    const handleSubmit = () => {
-        setModalOpen(false);
-    };
 
     return (
         <div className="pt-5 pb-5 w-full mx-auto">
@@ -175,20 +188,22 @@ function EventReadComponent() {
                                 onChange={(e) => setRejectReason(e.target.value)}
                             />
                         )}
-                        <div className="flex gap-4 mt-6 justify-center">
-                            <button
-                                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                                onClick={handleSubmit}
-                            >
-                                완료
-                            </button>
-                            <button
-                                className="px-4 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400"
-                                onClick={() => setModalOpen(false)}
-                            >
-                                취소
-                            </button>
-                        </div>
+                        {/*// {event.status === "PENDING" && (*/}
+                            <div className="flex gap-4 mt-6 justify-center">
+                                <button
+                                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                                    onClick={handleSubmit}
+                                >
+                                    완료
+                                </button>
+                                <button
+                                    className="px-4 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400"
+                                    onClick={() => setModalOpen(false)}
+                                >
+                                    취소
+                                </button>
+                            </div>
+                        {/*// )}*/}
                     </div>
                 </div>
             )}
